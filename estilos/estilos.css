@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f9f4ef;
+    font-family: 'Lato', sans-serif;
+}
+.navbar-brand {
+    font-size: 1.3em;
+    font-weight: 900;
+}
+li {
+    font-size: 1.1em;
+    padding-left:15px;
+    font-weight: 600;
+}
+main {
+    flex-grow: 1;
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.titulo {
+    font-weight: 900;
+}
+.parrafo {
+    font-weight: 300;
+    color:#716040;
+}
+.box {
+    border-radius: 4px;
+    background-color: #eaddcf;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 32px;
+    margin-top: 80px;
+}
+.boton {
+    background-color: #8c7851;
+    color:white;
+}
+.agendar {
+    color:#020826;
+    font-weight: 300;
+}
+.textoConfirmar{
+    color:#020826;
+    font-weight: 400;
+}
+.horas{
+    background-color: #fffffe;
+    margin-left: 100px;
+    border-radius: 10px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 32px;
+}
+.cajaHorasMedica {
+    max-height: 350px;
+    overflow: scroll;
+}
+.hora {
+    border-bottom: 1px rgba(17, 17, 26, 0.3) solid;
+    text-transform: capitalize;
+}
+footer {
+    padding-top:50px;
+    display: 'flex';
+    align-items: center;
+    justify-content: center;
+    text-align:center;
+    font-weight: 900;
+    font-size: 1.2em;
+}
+footer a{
+    text-decoration: none;
+}
