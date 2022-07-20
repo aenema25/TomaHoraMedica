@@ -22,7 +22,7 @@ class medicoTratante {
     }
 }
 //crear paciente
-class paciente {
+class crearPaciente {
     constructor(run, nombre, apellido, medico, horaAtencion) {
         this.run = run,
             this.nombre = nombre,
@@ -42,7 +42,6 @@ medicos.push(new medicoTratante('Parra', 'Gastroenterologia', ['14:00 pm', '15:0
 medicos.push(new medicoTratante('Perez', 'Gastroenterologia', ['14:30 pm', '15:30 pm', '16:30 pm', '17:30pm', '18:30pm']))
 // verificar si el navegador cuenta con el item medicos en localstorage, de no existir lo agrega
 if (localStorage.getItem('medicos') === undefined || localStorage.getItem('medicos') === null) {
-    console.log("se ejecuta")
     localStorage.setItem('medicos', JSON.stringify(medicos))
 }
 // verificar si el navegador cuenta con el item paciente en localstorage, de no existir lo agrega
@@ -53,7 +52,7 @@ if (localStorage.getItem('pacientes') === undefined || localStorage.getItem('pac
 //carga de primer paso en la web
 document.getElementById("pasos").innerHTML = primerPaso
 //cambios dinamicos por cada paso completado
-document.addEventListener('click', function (e) {
+document.addEventListener('click', (e) => {
     if (e.target && e.target.id == 'paso1') {
         const run = document.getElementById("run").value
         const name = document.getElementById("name").value
@@ -62,7 +61,7 @@ document.addEventListener('click', function (e) {
             document.getElementById("error").innerHTML = errorAlert("Debes rellenar todos los campos solicitados")
         } else {
             document.getElementById("error").style.display = "none"
-            const pacienteNuevo = new paciente(run, name, lastname)
+            const pacienteNuevo = new crearPaciente(run, name, lastname)
             pacienteActual.paciente = pacienteNuevo
             document.getElementById("pasos").innerHTML = seleccionarEspecialidad(especialidades, pacienteActual.paciente.nombre)
         }
@@ -102,13 +101,15 @@ document.addEventListener('click', function (e) {
         //obtener items de localstorage para almancenar la informacion
         let medicosFromStorage = JSON.parse(localStorage.getItem('medicos'))
         let pacientesFromStorage = JSON.parse(localStorage.getItem('pacientes'))
+        // Desestructurar objeto
+        const { paciente: nuevoPaciente, medico: medicoSeleccionado, hora: hora } = pacienteActual
         // actualizar la informacion de los elementos del localstorage
-        pacientesFromStorage.push(pacienteActual.paciente)
-        const indiceHora = pacienteActual.medico.horasDisponibles.indexOf(pacienteActual.hora)
-        medicosFromStorage.find(medico => medico.apellido == pacienteActual.medico.apellido).horasDisponibles.splice(indiceHora, 1)
-        medicosFromStorage.find(medico => medico.apellido == pacienteActual.medico.apellido).horasTomadas.push(pacienteActual.hora)
-        pacientesFromStorage.find(paciente => paciente.run == pacienteActual.paciente.run).medico = pacienteActual.medico.apellido
-        pacientesFromStorage.find(paciente => paciente.run == pacienteActual.paciente.run).horaAtencion = pacienteActual.hora
+        pacientesFromStorage.push(nuevoPaciente)
+        const indiceHora = medicoSeleccionado.horasDisponibles.indexOf(hora)
+        medicosFromStorage.find(medico => medico.apellido == medicoSeleccionado.apellido).horasDisponibles.splice(indiceHora, 1)
+        medicosFromStorage.find(medico => medico.apellido == medicoSeleccionado.apellido).horasTomadas.push(hora)
+        pacientesFromStorage.find(paciente => paciente.run == nuevoPaciente.run).medico = medicoSeleccionado.apellido
+        pacientesFromStorage.find(paciente => paciente.run == nuevoPaciente.run).horaAtencion = hora
         alert('Hora agendada con exito')
         document.getElementById("pasos").innerHTML = primerPaso
         // actualizar lista de pacientes y medicos en localstorage
