@@ -73,6 +73,7 @@ document.addEventListener('click', (e) => {
         } else {
             document.getElementById("error").style.display = "none"
             const medicosEspecialidad = JSON.parse(localStorage.getItem('medicos')).filter(medico => medico.especialidad == especialidad)
+            console.log(medicosEspecialidad)
             document.getElementById("pasos").innerHTML = seleccionarEspecialista(medicosEspecialidad)
         }
     }
@@ -83,18 +84,21 @@ document.addEventListener('click', (e) => {
         } else {
             document.getElementById("error").style.display = "none"
             const medico = JSON.parse(localStorage.getItem('medicos')).find(medico => medico.apellido == medicoSeleccionado)
+            console.log(medico)
             pacienteActual.medico = medico
             document.getElementById("pasos").innerHTML = seleccionarHora(medico)
         }
     }
     if (e.target && e.target.id == 'paso4') {
         const horaSeleccionada = document.getElementById("hora").value
+        console.log(horaSeleccionada)
         if (horaSeleccionada == "" || horaSeleccionada == "default") {
             document.getElementById("error").innerHTML = errorAlert("Debes seleccionar una hora para poder continuar")
         } else {
             document.getElementById("error").style.display = "none"
             pacienteActual.hora = horaSeleccionada
             document.getElementById("pasos").innerHTML = confirmarHora(pacienteActual)
+            console.log(pacienteActual)
         }
     }
     if (e.target && e.target.id == 'paso5') {
@@ -104,16 +108,23 @@ document.addEventListener('click', (e) => {
         // Desestructurar objeto
         const { paciente: nuevoPaciente, medico: medicoSeleccionado, hora: hora } = pacienteActual
         // actualizar la informacion de los elementos del localstorage
+        nuevoPaciente.horaAtencion = hora
+        nuevoPaciente.medico = medicoSeleccionado.apellido
         pacientesFromStorage.push(nuevoPaciente)
+
         const indiceHora = medicoSeleccionado.horasDisponibles.indexOf(hora)
+
         medicosFromStorage.find(medico => medico.apellido == medicoSeleccionado.apellido).horasDisponibles.splice(indiceHora, 1)
         medicosFromStorage.find(medico => medico.apellido == medicoSeleccionado.apellido).horasTomadas.push(hora)
-        pacientesFromStorage.find(paciente => paciente.run == nuevoPaciente.run).medico = medicoSeleccionado.apellido
-        pacientesFromStorage.find(paciente => paciente.run == nuevoPaciente.run).horaAtencion = hora
-        alert('Hora agendada con exito')
-        document.getElementById("pasos").innerHTML = primerPaso
-        // actualizar lista de pacientes y medicos en localstorage
+
         localStorage.setItem('medicos', JSON.stringify(medicosFromStorage))
         localStorage.setItem('pacientes', JSON.stringify(pacientesFromStorage))
+        
+        swal({
+            icon: "success",
+            title: "Hora agendada con exito",
+        }).then(() => window.location.reload(true))
+
+        
     }
 });
