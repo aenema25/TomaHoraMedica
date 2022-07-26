@@ -1,0 +1,102 @@
+[
+    {
+        "apellido": "Campos",
+        "especialidad": "Medicina General",
+        "horasDisponibles": [
+            "10:00 am",
+            "11:00 am",
+            "12:00 pm",
+            "13:00 pm",
+            "14:00 pm"
+        ],
+        "horasTomadas": []
+    },
+    {
+        "apellido": "Figueroa",
+        "especialidad": "Medicina General",
+        "horasDisponibles": [
+            "10:30 am",
+            "11:30 am",
+            "12:30 pm",
+            "13:30 pm",
+            "14:30 pm"
+        ],
+        "horasTomadas": []
+    },
+    {
+        "apellido": "Elgueta",
+        "especialidad": "Pediatria",
+        "horasDisponibles": [
+            "9:30 am",
+            "10:30 am",
+            "11:30 am",
+            "12:00 pm",
+            "13:00 pm",
+            "14:00 pm"
+        ],
+        "horasTomadas": []
+    },
+    {
+        "apellido": "Jara",
+        "especialidad": "Pediatria",
+        "horasDisponibles": [
+            "9:00 am",
+            "10:00 am",
+            "11:00 am",
+            "12:30 pm",
+            "13:30 pm",
+            "14:30 pm"
+        ],
+        "horasTomadas": []
+    },
+    {
+        "apellido": "Ormazabal",
+        "especialidad": "Traumatologia",
+        "horasDisponibles": [
+            "9:30 am",
+            "10:30 am",
+            "11:30 am",
+            "12:00 pm",
+            "13:00 pm",
+            "14:00 pm"
+        ],
+        "horasTomadas": []
+    },
+    {
+        "apellido": "Urrutia",
+        "especialidad": "Traumatologia",
+        "horasDisponibles": [
+            "9:00 am",
+            "10:00 am",
+            "11:00 am",
+            "12:30 pm",
+            "13:30 pm",
+            "14:30 pm"
+        ],
+        "horasTomadas": []
+    },
+    {
+        "apellido": "Parra",
+        "especialidad": "Gastroenterologia",
+        "horasDisponibles": [
+            "14:00 pm",
+            "15:00 pm",
+            "16:00 pm",
+            "17:00pm",
+            "18:00pm"
+        ],
+        "horasTomadas": []
+    },
+    {
+        "apellido": "Perez",
+        "especialidad": "Gastroenterologia",
+        "horasDisponibles": [
+            "14:30 pm",
+            "15:30 pm",
+            "16:30 pm",
+            "17:30pm",
+            "18:30pm"
+        ],
+        "horasTomadas": []
+    }
+]

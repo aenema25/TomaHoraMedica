@@ -32,22 +32,34 @@ class crearPaciente {
     }
 }
 // creacion de medico
-medicos.push(new medicoTratante('Campos', 'Medicina General', ['10:00 am', '11:00 am', '12:00 pm', '13:00 pm', '14:00 pm']))
-medicos.push(new medicoTratante('Figueroa', 'Medicina General', ['10:30 am', '11:30 am', '12:30 pm', '13:30 pm', '14:30 pm']))
-medicos.push(new medicoTratante('Elgueta', 'Pediatria', ['9:30 am', '10:30 am', '11:30 am', '12:00 pm', '13:00 pm', '14:00 pm']))
-medicos.push(new medicoTratante('Jara', 'Pediatria', ['9:00 am', '10:00 am', '11:00 am', '12:30 pm', '13:30 pm', '14:30 pm']))
-medicos.push(new medicoTratante('Ormazabal', 'Traumatologia', ['9:30 am', '10:30 am', '11:30 am', '12:00 pm', '13:00 pm', '14:00 pm']))
-medicos.push(new medicoTratante('Urrutia', 'Traumatologia', ['9:00 am', '10:00 am', '11:00 am', '12:30 pm', '13:30 pm', '14:30 pm']))
-medicos.push(new medicoTratante('Parra', 'Gastroenterologia', ['14:00 pm', '15:00 pm', '16:00 pm', '17:00pm', '18:00pm']))
-medicos.push(new medicoTratante('Perez', 'Gastroenterologia', ['14:30 pm', '15:30 pm', '16:30 pm', '17:30pm', '18:30pm']))
-// verificar si el navegador cuenta con el item medicos en localstorage, de no existir lo agrega
-if (localStorage.getItem('medicos') === undefined || localStorage.getItem('medicos') === null) {
-    localStorage.setItem('medicos', JSON.stringify(medicos))
-}
-// verificar si el navegador cuenta con el item paciente en localstorage, de no existir lo agrega
-if (localStorage.getItem('pacientes') === undefined || localStorage.getItem('pacientes') === null) {
-    localStorage.setItem('pacientes', JSON.stringify([]))
-}
+// medicos.push(new medicoTratante('Campos', 'Medicina General', ['10:00 am', '11:00 am', '12:00 pm', '13:00 pm', '14:00 pm']))
+// medicos.push(new medicoTratante('Figueroa', 'Medicina General', ['10:30 am', '11:30 am', '12:30 pm', '13:30 pm', '14:30 pm']))
+// medicos.push(new medicoTratante('Elgueta', 'Pediatria', ['9:30 am', '10:30 am', '11:30 am', '12:00 pm', '13:00 pm', '14:00 pm']))
+// medicos.push(new medicoTratante('Jara', 'Pediatria', ['9:00 am', '10:00 am', '11:00 am', '12:30 pm', '13:30 pm', '14:30 pm']))
+// medicos.push(new medicoTratante('Ormazabal', 'Traumatologia', ['9:30 am', '10:30 am', '11:30 am', '12:00 pm', '13:00 pm', '14:00 pm']))
+// medicos.push(new medicoTratante('Urrutia', 'Traumatologia', ['9:00 am', '10:00 am', '11:00 am', '12:30 pm', '13:30 pm', '14:30 pm']))
+// medicos.push(new medicoTratante('Parra', 'Gastroenterologia', ['14:00 pm', '15:00 pm', '16:00 pm', '17:00pm', '18:00pm']))
+// medicos.push(new medicoTratante('Perez', 'Gastroenterologia', ['14:30 pm', '15:30 pm', '16:30 pm', '17:30pm', '18:30pm']))
+
+// creacion de medicos mediante archivo json
+fetch('../medicos.json')
+    .then(response => response.json())
+    .then(response => {
+        response.forEach(medico => {
+            medicos.push(
+                new medicoTratante(medico.apellido, medico.especialidad, medico.horasDisponibles)
+            )
+        })
+        // verificar si el navegador cuenta con el item medicos en localstorage, de no existir lo agrega
+        if (localStorage.getItem('medicos') === undefined || localStorage.getItem('medicos') === null) {
+            localStorage.setItem('medicos', JSON.stringify(medicos))
+        }
+        // verificar si el navegador cuenta con el item paciente en localstorage, de no existir lo agrega
+        if (localStorage.getItem('pacientes') === undefined || localStorage.getItem('pacientes') === null) {
+            localStorage.setItem('pacientes', JSON.stringify([]))
+        }
+    })
+    .catch(err => console.log(`Ocurrio un error : ${err}`))
 
 //carga de primer paso en la web
 document.getElementById("pasos").innerHTML = primerPaso
@@ -119,12 +131,12 @@ document.addEventListener('click', (e) => {
 
         localStorage.setItem('medicos', JSON.stringify(medicosFromStorage))
         localStorage.setItem('pacientes', JSON.stringify(pacientesFromStorage))
-        
+
         swal({
             icon: "success",
             title: "Hora agendada con exito",
         }).then(() => window.location.reload(true))
 
-        
+
     }
 });
