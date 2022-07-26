@@ -42,7 +42,7 @@ class crearPaciente {
 // medicos.push(new medicoTratante('Perez', 'Gastroenterologia', ['14:30 pm', '15:30 pm', '16:30 pm', '17:30pm', '18:30pm']))
 
 // creacion de medicos mediante archivo json
-fetch('../medicos.json')
+fetch('https://raw.githubusercontent.com/aenema25/TomaHoraMedica/main/medicos.json', {method:'GET'})
     .then(response => response.json())
     .then(response => {
         response.forEach(medico => {
