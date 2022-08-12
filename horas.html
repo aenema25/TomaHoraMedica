@@ -46,8 +46,8 @@
             </nav>
         </header>
         <div class="container">
-            <div class="row p-5 g-5 justify-content-center">
-                <div class="col p-2">
+            <div class="row p-2 p-md-5 g-2 g-md-5 justify-content-center">
+                <div class="col-12 col-md-6 p-2 ">
                     <div class="row g-5">
                         <div class="col-12">
                             <p class="display-6 titulo">Revisa tus reservas medicas aca</p>
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col p-5 horas">
+                <div class="col-12 col-md-6 p-md-5 p-4 horas">
                     <div class="row g-2">
                         <div class="col-12">
                             <p class="h5 py-1">Ingresa tu rut para buscar tus horas agendadas</p>
@@ -71,7 +71,7 @@
                         <div class="col-12">
                             <input type="text" class="form-control" placeholder="RUT" aria-label="RUT" id="run">
                         </div>
-                        <div class="col-3 offset-9">
+                        <div class="col-12 col-md-3 offset-md-9">
                             <button class="btn boton w-100" id="buscar">Buscar</button>
                         </div>
                         <div class="col-12">
@@ -83,24 +83,6 @@
                 </div>
             </div>
         </div>
-        <!-- modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Cancelar hora medica</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        ¿ Estas seguro que deseas cancelar tu hora ?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="cancelarHora">Cancelar hora</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
     <footer>
         <p>Created with ♥️ by <a href="https://github.com/aenema25" target="_blank"> Oscar Uribe</a></p>
@@ -108,7 +90,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="./js/horas.js"></script>
+
 </body>
 
 </html>

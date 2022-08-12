@@ -10,7 +10,7 @@ const confirmarHora = (datos) => {
         <div class="col-12">
             <div id="error"></div>
         </div>
-        <div class="col-8">
+        <div class="col-sm-8 col-xs-12">
             <div class="lead py-4">
                 <p class="textoConfirmar"><strong>Nombre Paciente :</strong> ${datos.paciente.nombre}
                     ${datos.paciente.apellido}</p>
@@ -19,10 +19,10 @@ const confirmarHora = (datos) => {
                 <p class="textoConfirmar"><strong>Hora seleccionada :</strong> ${datos.hora}</p>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-sm-4 col-xs-12">
             <img src="./imagenes/confirmar.svg" alt="confirmar" width="100%">
         </div>
-        <div class="col-3 offset-9 pt-5">
+        <div class="col-sm-3 offset-sm-9 col-xs-12 pt-5">
                 <button class="btn boton w-100" id="paso5">Confirmar</button>
         </div>
     </div>   

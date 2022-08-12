@@ -50,12 +50,12 @@ main {
     font-weight: 300;
 }
 .textoConfirmar{
+    text-transform: capitalize;
     color:#020826;
     font-weight: 400;
 }
 .horas{
     background-color: #fffffe;
-    margin-left: 100px;
     border-radius: 10px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 32px;
 }
