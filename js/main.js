@@ -6,7 +6,7 @@ import seleccionarHora from "./html/seleccionarHora.js";
 import confirmarHora from "./html/confirmarHora.js";
 
 const especialidades = ['Medicina General', 'Pediatria', 'Traumatologia', 'Gastroenterologia']
-const medicos = [];
+
 let pacienteActual = {
     paciente: '',
     medico: '',
@@ -31,35 +31,28 @@ class crearPaciente {
             this.horaAtencion = horaAtencion
     }
 }
-// creacion de medico
-// medicos.push(new medicoTratante('Campos', 'Medicina General', ['10:00 am', '11:00 am', '12:00 pm', '13:00 pm', '14:00 pm']))
-// medicos.push(new medicoTratante('Figueroa', 'Medicina General', ['10:30 am', '11:30 am', '12:30 pm', '13:30 pm', '14:30 pm']))
-// medicos.push(new medicoTratante('Elgueta', 'Pediatria', ['9:30 am', '10:30 am', '11:30 am', '12:00 pm', '13:00 pm', '14:00 pm']))
-// medicos.push(new medicoTratante('Jara', 'Pediatria', ['9:00 am', '10:00 am', '11:00 am', '12:30 pm', '13:30 pm', '14:30 pm']))
-// medicos.push(new medicoTratante('Ormazabal', 'Traumatologia', ['9:30 am', '10:30 am', '11:30 am', '12:00 pm', '13:00 pm', '14:00 pm']))
-// medicos.push(new medicoTratante('Urrutia', 'Traumatologia', ['9:00 am', '10:00 am', '11:00 am', '12:30 pm', '13:30 pm', '14:30 pm']))
-// medicos.push(new medicoTratante('Parra', 'Gastroenterologia', ['14:00 pm', '15:00 pm', '16:00 pm', '17:00pm', '18:00pm']))
-// medicos.push(new medicoTratante('Perez', 'Gastroenterologia', ['14:30 pm', '15:30 pm', '16:30 pm', '17:30pm', '18:30pm']))
 
-// creacion de medicos mediante archivo json
-fetch('https://raw.githubusercontent.com/aenema25/TomaHoraMedica/main/medicos.json', {method:'GET'})
-    .then(response => response.json())
-    .then(response => {
-        response.forEach(medico => {
-            medicos.push(
-                new medicoTratante(medico.apellido, medico.especialidad, medico.horasDisponibles)
-            )
-        })
-        // verificar si el navegador cuenta con el item medicos en localstorage, de no existir lo agrega
-        if (localStorage.getItem('medicos') === undefined || localStorage.getItem('medicos') === null) {
+// creacion de medicos mediante archivo json y enviar informacion a localstorage
+
+const storageMedicos = localStorage.getItem('medicos')
+const storagePacientes = localStorage.getItem('pacientes')
+if (!storageMedicos) {
+    fetch('https://raw.githubusercontent.com/aenema25/TomaHoraMedica/main/medicos.json', { method: 'GET' })
+        .then(response => response.json())
+        .then(response => {
+            const medicos = [];
+            response.forEach(medico => {
+                medicos.push(
+                    new medicoTratante(medico.apellido, medico.especialidad, medico.horasDisponibles)
+                )
+            })
             localStorage.setItem('medicos', JSON.stringify(medicos))
-        }
-        // verificar si el navegador cuenta con el item paciente en localstorage, de no existir lo agrega
-        if (localStorage.getItem('pacientes') === undefined || localStorage.getItem('pacientes') === null) {
-            localStorage.setItem('pacientes', JSON.stringify([]))
-        }
-    })
-    .catch(err => console.log(`Ocurrio un error : ${err}`))
+        })
+        .catch(e => console.log(e))
+}
+if (!storagePacientes) {
+    localStorage.setItem('pacientes', JSON.stringify([]))
+}
 
 //carga de primer paso en la web
 document.getElementById("pasos").innerHTML = primerPaso
